@@ -10,7 +10,9 @@
   "license": "MIT",
   "scripts": {
     "changeset": "changeset",
-    "version": "changeset version"
+    "version": "changeset version",
+    "opencode:bootstrap": "./scripts/bootstrap-opencode.sh",
+    "opencode:install": "./scripts/install-opencode.sh"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.7.0",

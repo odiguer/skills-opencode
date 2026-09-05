@@ -10,8 +10,6 @@
 
 # Skills For Real Engineers
 
-[![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
-
 My agent skills that I use every day to do real engineering - not vibe coding.
 
 Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve.
@@ -22,26 +20,52 @@ If you want to keep up with changes to these skills, and any new ones I create, 
 
 [Sign Up To The Newsletter](https://www.aihero.dev/s/skills-newsletter)
 
-## Quickstart (30-second setup)
+## Quickstart
 
-1. Run the skills.sh installer:
+1. Clone this repo somewhere stable on your machine:
 
 ```bash
-npx skills@latest add mattpocock/skills
+git clone https://github.com/mattpocock/skills ~/mattpocock-skills
 ```
 
-2. Pick the skills you want, and which coding agents you want to install them on. **Make sure you select `/setup-matt-pocock-skills`**.
+2. Install the skills into your project:
 
-3. Run `/setup-matt-pocock-skills` in your agent. It will:
+```bash
+~/mattpocock-skills/scripts/install-opencode.sh /path/to/your/project
+```
+
+Or install them globally:
+
+```bash
+~/mattpocock-skills/scripts/install-opencode.sh --global
+```
+
+3. Restart opencode in the project.
+
+4. Run `/setup-matt-pocock-skills`. It will:
    - Ask you which issue tracker you want to use (GitHub, Linear, or local files)
    - Ask you what labels you apply to tickets when you triage them (`/triage` uses labels)
    - Ask you where you want to save any docs we create
 
-4. Bam - you're ready to go.
+5. Bam - you're ready to go.
+
+### Customizing the installed skills
+
+The default set is defined in [`skills-manifest.json`](./skills-manifest.json). Edit it to add or remove skills, then re-run `install-opencode.sh`. The manifest makes it easy to keep a curated default without touching individual projects.
+
+### Working on this repo
+
+If you're editing these skills, bootstrap opencode inside this repo first:
+
+```bash
+./scripts/bootstrap-opencode.sh
+```
+
+Then restart opencode.
 
 ## Why These Skills Exist
 
-I built these skills as a way to fix common failure modes I see with Claude Code, Codex, and other coding agents.
+I built these skills as a way to fix common failure modes I see with coding agents.
 
 ### #1: The Agent Didn't Do What I Want
 
@@ -184,7 +208,7 @@ General workflow tools, not code-specific.
 
 Tools I keep around but rarely use.
 
-- **[git-guardrails-claude-code](./skills/misc/git-guardrails-claude-code/SKILL.md)** — Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
+- **[git-guardrails](./skills/misc/git-guardrails/SKILL.md)** — Set up opencode permission rules to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
 - **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** — Migrate test files from `as` type assertions to @total-typescript/shoehorn.
 - **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** — Create exercise directory structures with sections, problems, solutions, and explainers.
 - **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.

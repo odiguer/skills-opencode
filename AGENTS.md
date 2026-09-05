@@ -7,7 +7,7 @@ Skills are organized into bucket folders under `skills/`:
 - `in-progress/` — drafts not yet ready to ship
 - `deprecated/` — no longer used
 
-Every skill in `engineering/`, `productivity/`, or `misc/` must have a reference in the top-level `README.md` and an entry in `.claude-plugin/plugin.json`. Skills in `personal/`, `in-progress/`, and `deprecated/` must not appear in either.
+Every skill in `engineering/`, `productivity/`, or `misc/` must have a reference in the top-level `README.md` and its bucket `README.md`. The `skills-manifest.json` controls which skills are installed by default by `scripts/install-opencode.sh`; add or remove paths there to change the default set. Skills in `personal/`, `in-progress/`, and `deprecated/` must not appear in the READMEs or the manifest.
 
 Each skill entry in the top-level `README.md` must link the skill name to its `SKILL.md`.
 
