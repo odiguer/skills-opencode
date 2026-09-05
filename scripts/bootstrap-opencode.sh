@@ -35,5 +35,20 @@ jq -r '.skills[]' "$MANIFEST" | while IFS= read -r skill_path; do
   echo "linked $name -> $src"
 done
 
+# Prune stale symlinks: links into this repo whose skill left the manifest.
+manifest_names="$(jq -r '.skills[] | split("/") | last' "$MANIFEST")"
+for entry in "$DEST"/*; do
+  [ -L "$entry" ] || continue
+  case "$(readlink "$entry")" in
+    "$REPO"/skills/*) ;;
+    *) continue ;;
+  esac
+  name="$(basename "$entry")"
+  if ! printf '%s\n' "$manifest_names" | grep -qx "$name"; then
+    rm "$entry"
+    echo "pruned $name (not in the manifest)"
+  fi
+done
+
 echo "opencode skills bootstrapped in $DEST"
 echo "Restart opencode for changes to take effect."

@@ -53,6 +53,22 @@ function symlinkSkill(src, dest) {
   fs.symlinkSync(src, dest, 'dir');
 }
 
+function pruneStaleLinks(destDir, manifest, skillsRepo) {
+  const manifestNames = new Set(manifest.skills.map((p) => path.basename(p)));
+  const skillsRoot = path.join(skillsRepo, 'skills') + path.sep;
+  for (const entry of fs.readdirSync(destDir)) {
+    const entryPath = path.join(destDir, entry);
+    const stat = fs.lstatSync(entryPath, { throwIfNoEntry: false });
+    if (!stat || !stat.isSymbolicLink()) continue;
+    const resolved = path.resolve(destDir, fs.readlinkSync(entryPath));
+    if (!resolved.startsWith(skillsRoot)) continue;
+    if (!manifestNames.has(entry)) {
+      fs.rmSync(entryPath, { force: true });
+      console.log(`pruned ${entry} (not in the manifest)`);
+    }
+  }
+}
+
 function installProject(targetRepo, manifest, skillsRepo) {
   const targetOpencodeSkills = path.join(targetRepo, '.opencode', 'skills');
   fs.mkdirSync(targetOpencodeSkills, { recursive: true });
@@ -70,6 +86,8 @@ function installProject(targetRepo, manifest, skillsRepo) {
     symlinkSkill(src, dest);
     console.log(`linked ${name} -> ${src}`);
   }
+
+  pruneStaleLinks(targetOpencodeSkills, manifest, skillsRepo);
 
   const targetConfigPath = path.join(targetRepo, 'opencode.json');
   let config = {};
@@ -110,6 +128,8 @@ function installGlobal(manifest, skillsRepo) {
     symlinkSkill(src, dest);
     console.log(`linked ${name} -> ${src}`);
   }
+
+  pruneStaleLinks(globalSkillsDir, manifest, skillsRepo);
 
   console.log(`\nInstalled mattpocock-skills globally into ${globalSkillsDir}`);
   console.log('Restart opencode for changes to take effect.');
