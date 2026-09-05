@@ -20,12 +20,15 @@ If you want to keep up with changes to these skills, and any new ones I create, 
 
 [Sign Up To The Newsletter](https://www.aihero.dev/s/skills-newsletter)
 
+> [!NOTE]
+> This is a fork of [mattpocock/skills](https://github.com/mattpocock/skills), adapted for [opencode](https://opencode.ai): the install plumbing, repo conventions, and permission tooling follow opencode instead of Claude Code or Codex. All credit for the skills themselves goes to Matt Pocock; this fork just re-syncs them from upstream and keeps them working for opencode.
+
 ## Quickstart
 
 1. Clone this repo somewhere stable on your machine:
 
 ```bash
-git clone https://github.com/mattpocock/skills ~/mattpocock-skills
+git clone https://github.com/odiguer/skills-opencode ~/mattpocock-skills
 ```
 
 2. Install the skills into your project:
