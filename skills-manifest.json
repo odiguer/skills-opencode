@@ -8,15 +8,23 @@
     "engineering/improve-codebase-architecture",
     "engineering/setup-matt-pocock-skills",
     "engineering/tdd",
-    "engineering/to-issues",
-    "engineering/to-prd",
+    "engineering/to-spec",
+    "engineering/to-tickets",
+    "engineering/wayfinder",
+    "engineering/implement",
     "engineering/prototype",
+    "engineering/research",
     "engineering/domain-modeling",
     "engineering/codebase-design",
+    "engineering/code-review",
+    "engineering/resolving-merge-conflicts",
+    "engineering/wizard",
     "productivity/grill-me",
     "productivity/grilling",
     "productivity/handoff",
     "productivity/teach",
-    "productivity/writing-great-skills"
+    "productivity/to-questionnaire",
+    "productivity/wait-what",
+    "productivity/writing-for-agents"
   ]
 }

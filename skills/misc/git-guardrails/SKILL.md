@@ -24,7 +24,7 @@ Ask the user: install for **this project** (`./opencode.json`) or **all projects
 
 ### 2. Read existing config
 
-Read the target config file if it exists. Preserve every existing field — only merge into `permission.bash`.
+Read the target config file if it exists. Preserve every existing field: only merge into `permission.bash`.
 
 ### 3. Merge permission rules
 
